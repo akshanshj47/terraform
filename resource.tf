@@ -149,7 +149,7 @@ resource "aws_ecs_cluster" "dev_cluster" {
   name = "dev_cluster"
 }
 
-resource "aws_ecs_service" "hello_world" {
+resource "aws_ecs_service" "ecs_task" {
   name            = "hello-world-service"
   cluster         = aws_ecs_cluster.dev_cluster.id
   task_definition = aws_ecs_task_definition.ecs_task.arn
@@ -163,7 +163,7 @@ resource "aws_ecs_service" "hello_world" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.ecs_targetgroup.id
-    container_name   = "hello-world-app"
+    container_name   = "ecs_task"
     container_port   = 3000
   }
 
